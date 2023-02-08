@@ -9,12 +9,16 @@ import javax.validation.constraints.NotBlank
 @RedisHash
 class RefreshToken(
         @Id
-        val email: String,
+        val id: String,
 
         @Indexed
         @NotBlank
-        val token: String,
+        var token: String,
 
         @TimeToLive
         var timeToLive: Long
-)
+) {
+        fun edit(token: String) {
+                this.token = token
+        }
+}

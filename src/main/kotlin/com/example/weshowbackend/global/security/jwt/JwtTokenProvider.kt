@@ -1,5 +1,8 @@
 package com.example.weshowbackend.global.security.jwt
 
+import com.example.weshowbackend.domain.auth.domain.RefreshToken
+import com.example.weshowbackend.domain.auth.domain.repository.RefreshTokenRepository
+import com.example.weshowbackend.domain.user.present.dto.TokenResponse
 import com.example.weshowbackend.global.error.exception.InvalidJwtException
 import com.example.weshowbackend.global.security.auth.AuthDetailService
 import io.jsonwebtoken.Claims
@@ -16,14 +19,30 @@ import javax.servlet.http.HttpServletRequest
 @Component
 class JwtTokenProvider(
         private val authDetailService: AuthDetailService,
-        private val jwtProperties: JwtProperties
+        private val jwtProperties: JwtProperties,
+        private val refreshTokenRepository: RefreshTokenRepository
 ) {
 
-    fun getToken(id: String):String {
-        return generateAccessToken(id, jwtProperties.accessExp, "access")
+    fun getToken(id: String):TokenResponse {
+        return TokenResponse(
+                accessToken = generateToken(id, jwtProperties.accessExp, "access"),
+                refreshToken = generateRefreshToken(id)
+        )
     }
 
-    private fun generateAccessToken(id: String, expired: Long, type: String): String {
+    fun generateRefreshToken(id: String): String {
+        val newRefreshToken: String = generateToken(id, jwtProperties.refreshExp, "refresh")
+        refreshTokenRepository.save(
+                RefreshToken (
+                        id = id,
+                        token = newRefreshToken,
+                        timeToLive = jwtProperties.refreshExp
+                )
+        )
+        return newRefreshToken
+    }
+
+    private fun generateToken(id: String, expired: Long, type: String): String {
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.secretKey)
                 .setSubject(id)
@@ -54,7 +73,7 @@ class JwtTokenProvider(
         return getTokenBody(token).subject
     }
 
-    private fun getTokenBody(token: String): Claims {
+    fun getTokenBody(token: String): Claims {
         return try {
             Jwts.parser().setSigningKey(jwtProperties.secretKey)
                     .parseClaimsJws(token).body

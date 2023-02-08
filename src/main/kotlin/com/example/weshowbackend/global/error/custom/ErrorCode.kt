@@ -12,6 +12,7 @@ enum class ErrorCode (
     PRODUCT_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "제품을 찾지 못함"),
     REVIEW_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "리뷰를 찾지 못함"),
     POINT_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "평점를 찾지 못함"),
+    REFRESH_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "토큰을 찾지 못함"),
 
     REVIEW_CONFLICT_EXCEPTION(HttpStatus.CONFLICT, "리뷰가 이미 존재함"),
     POINT_CONFLICT_EXCEPTION(HttpStatus.CONFLICT, "평점이 이미 존재함"),
