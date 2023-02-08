@@ -8,22 +8,22 @@ import com.example.weshowbackend.domain.user.service.SignUpService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-@RestController
 @RequestMapping("/user")
+@RestController
 class UserController (
         private val signUpService: SignUpService,
         private val signInService: SignInService
 ) {
 
-    @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
-    fun signup(@RequestBody request: SignUpRequest) {
+    @PostMapping("/signup")
+    fun saveUser(@RequestBody request: SignUpRequest) {
         signUpService.signup(request)
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/sign")
-    fun sign(@RequestBody request: SignInRequest): TokenResponse {
+    fun loginUser(@RequestBody request: SignInRequest):TokenResponse {
         return signInService.sign(request)
     }
 }

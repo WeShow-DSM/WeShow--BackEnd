@@ -2,8 +2,8 @@ package com.example.weshowbackend.domain.image.domain
 
 import com.example.weshowbackend.domain.product.domain.Product
 import com.example.weshowbackend.global.entity.BaseEntity
-import jakarta.persistence.*
-import jakarta.validation.constraints.NotNull
+import javax.persistence.*
+import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "tbl_image")

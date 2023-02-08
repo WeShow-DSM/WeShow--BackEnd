@@ -1,9 +1,9 @@
 package com.example.weshowbackend.domain.user.domain
 
 import com.example.weshowbackend.global.entity.BaseEntity
-import jakarta.persistence.Entity
-import jakarta.persistence.Table
-import jakarta.validation.constraints.NotNull
+import javax.persistence.Entity
+import javax.persistence.Table
+import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "tbl_user")

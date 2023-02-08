@@ -6,12 +6,12 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import jakarta.servlet.http.HttpServletRequest
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import java.util.*
+import javax.servlet.http.HttpServletRequest
 
 @Component
 class JwtTokenProvider(
@@ -19,14 +19,14 @@ class JwtTokenProvider(
         private val jwtProperties: JwtProperties
 ) {
 
-    fun getToken(name: String):String {
-        return generateAccessToken(name, jwtProperties.accessExp, "access")
+    fun getToken(id: String):String {
+        return generateAccessToken(id, jwtProperties.accessExp, "access")
     }
 
-    private fun generateAccessToken(name: String, expired: Long, type: String): String {
+    private fun generateAccessToken(id: String, expired: Long, type: String): String {
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.secretKey)
-                .setSubject(name)
+                .setSubject(id)
                 .setHeaderParam("type", type)
                 .setIssuedAt(Date())
                 .setExpiration(Date(System.currentTimeMillis() + expired * 1000))

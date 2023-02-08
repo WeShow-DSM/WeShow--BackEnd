@@ -31,21 +31,21 @@ class SecurityConfig (
         http
                 .authorizeHttpRequests()
 
-                .requestMatchers(HttpMethod.POST,"/user/signup").permitAll()
-                .requestMatchers(HttpMethod.POST,"/user/sign").permitAll()
+                .antMatchers(HttpMethod.POST,"/user/signup").permitAll()
+                .antMatchers(HttpMethod.POST,"/user/sign").permitAll()
 
-                .requestMatchers(HttpMethod.GET, "/profile").authenticated()
-                .requestMatchers(HttpMethod.PUT, "/profile").authenticated()
+                .antMatchers(HttpMethod.GET, "/profile").authenticated()
+                .antMatchers(HttpMethod.PUT, "/profile").authenticated()
 
-                .requestMatchers(HttpMethod.POST, "/review/{id}").authenticated()
-                .requestMatchers(HttpMethod.PUT, "/review/{id}").authenticated()
-                .requestMatchers(HttpMethod.DELETE, "/review{id}").authenticated()
+                .antMatchers(HttpMethod.POST, "/review/{id}").authenticated()
+                .antMatchers(HttpMethod.PUT, "/review/{id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/review{id}").authenticated()
 
-                .requestMatchers(HttpMethod.POST, "/point/{id}").authenticated()
-                .requestMatchers(HttpMethod.PUT, "/point/{id}").authenticated()
-                .requestMatchers(HttpMethod.DELETE, "/point/{id}").authenticated()
+                .antMatchers(HttpMethod.POST, "/point/{id}").authenticated()
+                .antMatchers(HttpMethod.PUT, "/point/{id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/point/{id}").authenticated()
 
-                .requestMatchers(HttpMethod.GET, "/order").authenticated()
+                .antMatchers(HttpMethod.GET, "/order").authenticated()
 
                 .anyRequest().authenticated()
 

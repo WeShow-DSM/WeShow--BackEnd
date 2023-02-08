@@ -3,11 +3,11 @@ package com.example.weshowbackend.global.error
 import com.example.weshowbackend.global.error.custom.CustomException
 import com.example.weshowbackend.global.error.exception.InternalServerException
 import com.fasterxml.jackson.databind.ObjectMapper
-import jakarta.servlet.FilterChain
-import jakarta.servlet.http.HttpServletRequest
-import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.MediaType
 import org.springframework.web.filter.OncePerRequestFilter
+import javax.servlet.FilterChain
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 class ExceptionFilter (
         private val objectMapper: ObjectMapper

@@ -14,20 +14,19 @@ import org.springframework.transaction.annotation.Transactional
 class SignInService (
         private val userRepository: UserRepository,
         private val passwordEncoder: PasswordEncoder,
-        private val jwtProvider: JwtTokenProvider
+        private val jwtTokenProvider: JwtTokenProvider
 ) {
 
     @Transactional
-    fun sign(request: SignInRequest): TokenResponse {
+    fun sign(request: SignInRequest):TokenResponse {
         val user = userRepository.findUserByAccountId(request.accountId) ?: throw UserNotFoundException.EXCEPTION
 
         if(!passwordEncoder.matches(request.password, user.password)) {
             throw BadPasswordException.EXCEPTION
         }
 
-        val access = jwtProvider.getToken(user.accountId)
-        print(access)
-
-        return TokenResponse(access)
+        return TokenResponse(
+                jwtTokenProvider.getToken(request.accountId)
+        )
     }
 }

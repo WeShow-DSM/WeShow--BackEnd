@@ -16,6 +16,6 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun valid(e: MethodArgumentNotValidException): ResponseEntity<ErrorResponse<Unit>> {
-        return ResponseEntity(ErrorResponse.valid(400, "잘못된 요청"), HttpStatus.valueOf(400))
+        return ResponseEntity(ErrorResponse.valid(400, "Bad request"), HttpStatus.valueOf(400))
     }
 }
