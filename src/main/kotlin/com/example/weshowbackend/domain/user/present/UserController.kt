@@ -1,5 +1,6 @@
 package com.example.weshowbackend.domain.user.present
 
+import com.example.weshowbackend.domain.auth.service.RefreshService
 import com.example.weshowbackend.domain.user.present.dto.SignInRequest
 import com.example.weshowbackend.domain.user.present.dto.SignUpRequest
 import com.example.weshowbackend.domain.user.present.dto.TokenResponse
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class UserController (
         private val signUpService: SignUpService,
-        private val signInService: SignInService
+        private val signInService: SignInService,
+        private val refreshService: RefreshService
 ) {
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -25,5 +27,10 @@ class UserController (
     @PostMapping("/sign")
     fun loginUser(@RequestBody request: SignInRequest):TokenResponse {
         return signInService.sign(request)
+    }
+
+    @PutMapping
+    fun tokenReissue(@RequestHeader("Refresh-Token") refreshToken: String): TokenResponse {
+        return refreshService.execute(refreshToken)
     }
 }

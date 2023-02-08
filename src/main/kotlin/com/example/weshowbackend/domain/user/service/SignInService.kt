@@ -25,8 +25,6 @@ class SignInService (
             throw BadPasswordException.EXCEPTION
         }
 
-        return TokenResponse(
-                jwtTokenProvider.getToken(request.accountId)
-        )
+        return jwtTokenProvider.getToken(user.accountId)
     }
 }
