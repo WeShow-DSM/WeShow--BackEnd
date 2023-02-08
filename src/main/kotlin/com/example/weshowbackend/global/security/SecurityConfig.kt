@@ -33,6 +33,7 @@ class SecurityConfig (
 
                 .antMatchers(HttpMethod.POST,"/user/signup").permitAll()
                 .antMatchers(HttpMethod.POST,"/user/sign").permitAll()
+                .antMatchers(HttpMethod.PUT,"/user/refresh").authenticated()
 
                 .antMatchers(HttpMethod.GET, "/profile").authenticated()
                 .antMatchers(HttpMethod.PUT, "/profile").authenticated()

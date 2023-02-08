@@ -13,7 +13,7 @@ class Basket (
         @field:NotNull
         val count : Int,
 
-        @ManyToOne(fetch = FetchType.LAZY)
+        @OneToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id", nullable = false)
         val user: User,
 
