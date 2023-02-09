@@ -13,4 +13,6 @@ interface ReviewRepository : CrudRepository<Review, Long> {
     fun findReviewByUserAndProduct(user: User, product: Product): Review?
 
     fun findReviewsByProduct(product: Product): List<Review>
+
+    fun deleteAllByProduct(product: Product)
 }

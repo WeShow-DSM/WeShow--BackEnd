@@ -3,11 +3,9 @@ package com.example.weshowbackend.domain.v1.present
 import com.example.weshowbackend.domain.v1.present.dto.GetOneResponse
 import com.example.weshowbackend.domain.v1.present.dto.MyPageResponse
 import com.example.weshowbackend.domain.v1.present.dto.ProductRequest
-import com.example.weshowbackend.domain.v1.service.EditProductService
-import com.example.weshowbackend.domain.v1.service.GetProductService
-import com.example.weshowbackend.domain.v1.service.MyProductService
-import com.example.weshowbackend.domain.v1.service.PostProductService
+import com.example.weshowbackend.domain.v1.service.*
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -23,7 +21,8 @@ class V1Controller (
         private val myProductService: MyProductService,
         private val postProductService: PostProductService,
         private val editProductService: EditProductService,
-        private val getProductService: GetProductService
+        private val getProductService: GetProductService,
+        private val deleteProductService: DeleteProductService
 ) {
 
     @ResponseStatus(HttpStatus.OK)
@@ -48,5 +47,11 @@ class V1Controller (
     @GetMapping("/v1/{id}")
     fun get(@PathVariable("id") id: Long):GetOneResponse {
         return getProductService.execute(id)
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/v1/{id}")
+    fun delete(@PathVariable("id") id: Long) {
+        deleteProductService.execute(id)
     }
 }

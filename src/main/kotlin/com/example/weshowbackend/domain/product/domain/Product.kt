@@ -37,6 +37,10 @@ class Product(
                 this.point.plus(point)
         }
 
+        fun minus(point: Point) {
+                this.point.minus(point)
+        }
+
         fun edit(average: Float) {
                 this.average = average
         }

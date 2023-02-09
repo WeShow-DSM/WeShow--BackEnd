@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface ImageRepository : CrudRepository<Image, Long> {
     fun findImagesByProduct(product: Product): List<Image>
+
+    fun deleteAllByProduct(product: Product)
 }
