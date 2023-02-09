@@ -2,6 +2,7 @@ package com.example.weshowbackend.domain.product.domain.repository
 
 import com.example.weshowbackend.domain.product.domain.Product
 import com.example.weshowbackend.domain.product.domain.type.Category
+import com.example.weshowbackend.domain.user.domain.User
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
@@ -12,4 +13,6 @@ interface ProductRepository : CrudRepository<Product, Long>, CustomProductReposi
     fun findProductsByCategory(category: Category): List<Product>
 
     fun findProductsByTitleContains(title: String): List<Product>
+
+    fun findProductsByUser(user: User): List<Product>
 }

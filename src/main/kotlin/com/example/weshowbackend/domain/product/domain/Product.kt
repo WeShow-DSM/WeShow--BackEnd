@@ -2,6 +2,7 @@ package com.example.weshowbackend.domain.product.domain
 
 import com.example.weshowbackend.domain.point.domain.Point
 import com.example.weshowbackend.domain.product.domain.type.Category
+import com.example.weshowbackend.domain.user.domain.User
 import com.example.weshowbackend.global.entity.BaseEntity
 import javax.persistence.*
 import javax.validation.constraints.NotNull
@@ -24,6 +25,10 @@ class Product (
         @field:NotNull
         @field:Enumerated(EnumType.STRING)
         var category: Category,
+
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id", nullable = false)
+        val user: User,
 
         @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
         val point: List<Point> = emptyList()
