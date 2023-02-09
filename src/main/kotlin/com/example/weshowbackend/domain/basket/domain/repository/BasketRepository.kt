@@ -7,4 +7,6 @@ import org.springframework.data.repository.CrudRepository
 
 interface BasketRepository : CrudRepository<Basket, Long> {
     fun findBasketByUserAndProduct(user: User, product: Product): Basket?
+
+    fun findBasketsByUser(user: User): List<Basket>
 }
