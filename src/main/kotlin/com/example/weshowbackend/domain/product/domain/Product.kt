@@ -19,9 +19,20 @@ class Product (
         var comment: String,
 
         @field:NotNull
+        var average: Float,
+
+        @field:NotNull
         @field:Enumerated(EnumType.STRING)
         var category: Category,
 
         @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-        val point: List<Point>
-) : BaseEntity()
+        val point: List<Point> = emptyList()
+) : BaseEntity() {
+        fun add(point: Point) {
+                this.point.plus(point)
+        }
+
+        fun edit(average: Float) {
+                this.average = average
+        }
+}
