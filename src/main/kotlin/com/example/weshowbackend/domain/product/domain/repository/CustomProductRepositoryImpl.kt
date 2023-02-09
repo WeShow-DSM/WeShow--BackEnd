@@ -17,7 +17,8 @@ class CustomProductRepositoryImpl (
 
     override fun popularProducts(): List<Product> {
         return query.selectFrom(product)
-                .orderBy(product.createdAt.desc())
+                .orderBy(product.average.desc())
+                .limit(6)
                 .fetch()
     }
 
