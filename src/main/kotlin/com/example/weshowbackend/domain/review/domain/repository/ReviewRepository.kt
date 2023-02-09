@@ -11,4 +11,6 @@ interface ReviewRepository : CrudRepository<Review, Long> {
     fun findReviewById(id: Long): Review?
 
     fun findReviewByUserAndProduct(user: User, product: Product): Review?
+
+    fun findReviewsByProduct(product: Product): List<Review>
 }
