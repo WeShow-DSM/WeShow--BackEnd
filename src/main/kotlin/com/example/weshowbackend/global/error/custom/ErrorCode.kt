@@ -7,7 +7,9 @@ enum class ErrorCode (
         private val message: String
 ) : ErrorProperty {
     BAD_PASSWORD_EXCEPTION(HttpStatus.BAD_REQUEST, "비밀번호 틀림"),
+    SAVE_IMAGE_FAILED_EXCEPTION(HttpStatus.BAD_REQUEST, "이미지 저장 실패"),
 
+    IMAGE_NOT_VALUE_EXCEPTION(HttpStatus.NOT_FOUND, "이미지를 찾지 못함"),
     USER_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "유저를 찾지 못함"),
     PRODUCT_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "제품을 찾지 못함"),
     REVIEW_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "리뷰를 찾지 못함"),
