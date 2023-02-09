@@ -17,9 +17,24 @@ spring:
     password: ${DB_PWD:0319}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  profiles:
+    active: local
+
 jwt:
   secret-key: ${JWT_SECRET:sadsadasd}
   access-exp: ${JWT_ACCESS_EXP:12000000}
   refresh-exp: ${JWT_REFRESH_EXP:1800000000}
   header: ${JWT_HEADER:Authorization}
   prefix: ${JWT_PREFIX:Bearer}
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${S3_ACCESS_KEY}
+      secret-key: ${S3_SECRET_KEY}
+    s3:
+      bucket: ${S3_BUCKET:weshow12}
+    region:
+      static: ${S3_REGION:ap-northeast-2}
+    stack:
+      auto: false
