@@ -40,4 +40,11 @@ class Product(
         fun edit(average: Float) {
                 this.average = average
         }
+
+        fun patchProduct(title: String, price: Int, comment: String, category: Category) {
+                this.title = title
+                this.price = price
+                this.comment = comment
+                this.category = category
+        }
 }

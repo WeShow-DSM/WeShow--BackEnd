@@ -10,8 +10,6 @@ import com.example.weshowbackend.domain.user.facade.UserFacade
 import com.example.weshowbackend.domain.v1.present.dto.ProductRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import javax.persistence.*
-import javax.validation.constraints.NotNull
 
 @Service
 class PostProductService (
