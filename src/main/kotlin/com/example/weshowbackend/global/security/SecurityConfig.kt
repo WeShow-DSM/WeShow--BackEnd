@@ -48,6 +48,8 @@ class SecurityConfig (
 
                 .antMatchers(HttpMethod.GET, "/order").authenticated()
 
+                .antMatchers(HttpMethod.GET, "/product/{id}").permitAll()
+
                 .anyRequest().authenticated()
 
                 .and()
