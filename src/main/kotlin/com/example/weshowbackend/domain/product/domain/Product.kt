@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "tbl_product")
-class Product (
+class Product(
         @field:NotNull
         var title: String,
 
