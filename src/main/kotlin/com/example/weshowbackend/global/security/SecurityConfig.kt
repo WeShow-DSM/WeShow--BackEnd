@@ -56,6 +56,8 @@ class SecurityConfig (
                 .antMatchers(HttpMethod.GET, "/product/basket").authenticated()
                 .antMatchers(HttpMethod.POST, "/product/order").authenticated()
 
+                .antMatchers(HttpMethod.GET, "/product/v1").authenticated()
+
                 .anyRequest().authenticated()
 
                 .and()
