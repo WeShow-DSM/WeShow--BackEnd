@@ -1,8 +1,10 @@
 package com.example.weshowbackend.domain.v1.present
 
+import com.example.weshowbackend.domain.v1.present.dto.GetOneResponse
 import com.example.weshowbackend.domain.v1.present.dto.MyPageResponse
 import com.example.weshowbackend.domain.v1.present.dto.ProductRequest
 import com.example.weshowbackend.domain.v1.service.EditProductService
+import com.example.weshowbackend.domain.v1.service.GetProductService
 import com.example.weshowbackend.domain.v1.service.MyProductService
 import com.example.weshowbackend.domain.v1.service.PostProductService
 import org.springframework.http.HttpStatus
@@ -20,7 +22,8 @@ import org.springframework.web.bind.annotation.RestController
 class V1Controller (
         private val myProductService: MyProductService,
         private val postProductService: PostProductService,
-        private val editProductService: EditProductService
+        private val editProductService: EditProductService,
+        private val getProductService: GetProductService
 ) {
 
     @ResponseStatus(HttpStatus.OK)
@@ -39,5 +42,11 @@ class V1Controller (
     @PutMapping("/v1/{id}")
     fun patch(@PathVariable("id") id: Long, @RequestBody request: ProductRequest) {
         editProductService.execute(id, request)
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/v1/{id}")
+    fun get(@PathVariable("id") id: Long):GetOneResponse {
+        return getProductService.execute(id)
     }
 }

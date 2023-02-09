@@ -55,10 +55,11 @@ class SecurityConfig (
                 .antMatchers(HttpMethod.POST, "/product/{product-id}/{count}").authenticated()
                 .antMatchers(HttpMethod.GET, "/product/basket").authenticated()
                 .antMatchers(HttpMethod.POST, "/product/order").authenticated()
-                
+
                 .antMatchers(HttpMethod.GET, "/product/v1").authenticated()
                 .antMatchers(HttpMethod.POST, "/product/v1").authenticated()
                 .antMatchers(HttpMethod.PUT, "/product/v1/{id}").authenticated()
+                .antMatchers(HttpMethod.GET, "/product/v1/{id}").authenticated()
 
                 .anyRequest().authenticated()
 
