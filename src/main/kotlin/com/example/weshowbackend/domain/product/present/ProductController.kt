@@ -1,7 +1,9 @@
 package com.example.weshowbackend.domain.product.present
 
+import com.example.weshowbackend.domain.product.present.dto.CategorySearchResponse
 import com.example.weshowbackend.domain.product.present.dto.MainListResponse
 import com.example.weshowbackend.domain.product.present.dto.ProductElementResponse
+import com.example.weshowbackend.domain.product.service.CategorySearchService
 import com.example.weshowbackend.domain.product.service.MainListService
 import com.example.weshowbackend.domain.product.service.ProductDetailsService
 import org.springframework.http.HttpStatus
@@ -15,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/product")
 class ProductController (
         private val productDetailsService: ProductDetailsService,
-        private val mainListService: MainListService
+        private val mainListService: MainListService,
+        private val categorySearchService: CategorySearchService
 ) {
 
     @ResponseStatus(HttpStatus.OK)
@@ -28,5 +31,11 @@ class ProductController (
     @GetMapping
     fun list(): MainListResponse {
         return mainListService.mainList()
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/category/{category}")
+    fun category(@PathVariable("category") category: String): CategorySearchResponse {
+        return categorySearchService.execute(category)
     }
 }

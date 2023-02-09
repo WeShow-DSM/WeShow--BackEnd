@@ -50,6 +50,7 @@ class SecurityConfig (
 
                 .antMatchers(HttpMethod.GET, "/product/{id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/product").permitAll()
+                .antMatchers(HttpMethod.GET, "/category/{category}").permitAll()
 
                 .anyRequest().authenticated()
 
