@@ -10,4 +10,6 @@ interface ProductRepository : CrudRepository<Product, Long>, CustomProductReposi
     fun findProductById(id: Long): Product?
 
     fun findProductsByCategory(category: Category): List<Product>
+
+    fun findProductsByTitleContains(title: String): List<Product>
 }
