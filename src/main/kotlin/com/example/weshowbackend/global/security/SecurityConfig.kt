@@ -50,8 +50,10 @@ class SecurityConfig (
 
                 .antMatchers(HttpMethod.GET, "/product/{id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/product").permitAll()
-                .antMatchers(HttpMethod.GET, "/category/{category}").permitAll()
-                .antMatchers(HttpMethod.GET, "/search/{title}").permitAll()
+                .antMatchers(HttpMethod.GET, "/product/category/{category}").permitAll()
+                .antMatchers(HttpMethod.GET, "/product/search/{title}").permitAll()
+                .antMatchers(HttpMethod.POST, "/product/{product-id}/{count}").authenticated()
+                .antMatchers(HttpMethod.GET, "/product/basket").permitAll()
 
                 .anyRequest().authenticated()
 
