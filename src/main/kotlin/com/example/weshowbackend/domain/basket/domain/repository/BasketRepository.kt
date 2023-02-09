@@ -9,4 +9,6 @@ interface BasketRepository : CrudRepository<Basket, Long> {
     fun findBasketByUserAndProduct(user: User, product: Product): Basket?
 
     fun findBasketsByUser(user: User): List<Basket>
+
+    fun findBasketById(id: Long): Basket
 }

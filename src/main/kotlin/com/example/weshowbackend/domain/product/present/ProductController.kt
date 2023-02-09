@@ -1,14 +1,12 @@
 package com.example.weshowbackend.domain.product.present
 
-import com.example.weshowbackend.domain.product.present.dto.BasketResponse
-import com.example.weshowbackend.domain.product.present.dto.CategorySearchResponse
-import com.example.weshowbackend.domain.product.present.dto.MainListResponse
-import com.example.weshowbackend.domain.product.present.dto.ProductElementResponse
+import com.example.weshowbackend.domain.product.present.dto.*
 import com.example.weshowbackend.domain.product.service.*
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
@@ -21,7 +19,8 @@ class ProductController (
         private val categorySearchService: CategorySearchService,
         private val titleSearchService: TitleSearchService,
         private val putBasketService: PutBasketService,
-        private val basketListService: BasketListService
+        private val basketListService: BasketListService,
+        private val orderService: OrderService
 ) {
 
     @ResponseStatus(HttpStatus.OK)
@@ -58,5 +57,11 @@ class ProductController (
     @GetMapping("/basket")
     fun basket():BasketResponse {
         return basketListService.execute()
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/order")
+    fun order(@RequestBody request: OrderRequest) {
+        orderService.execute(request)
     }
 }
