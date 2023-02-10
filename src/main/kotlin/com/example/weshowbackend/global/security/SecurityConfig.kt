@@ -51,7 +51,7 @@ class SecurityConfig (
                 .antMatchers(HttpMethod.GET, "/product/{id}").permitAll()
                 .antMatchers(HttpMethod.GET, "/product").permitAll()
                 .antMatchers(HttpMethod.GET, "/product/category/{category}").permitAll()
-                .antMatchers(HttpMethod.GET, "/product/search/{title}").permitAll()
+                .antMatchers(HttpMethod.GET, "/product/search/{title}").authenticated()
                 .antMatchers(HttpMethod.POST, "/product/{product-id}/{count}").authenticated()
                 .antMatchers(HttpMethod.GET, "/product/basket").authenticated()
                 .antMatchers(HttpMethod.POST, "/product/order").authenticated()
@@ -59,7 +59,7 @@ class SecurityConfig (
                 .antMatchers(HttpMethod.GET, "/product/v1").authenticated()
                 .antMatchers(HttpMethod.POST, "/product/v1").authenticated()
                 .antMatchers(HttpMethod.PUT, "/product/v1/{id}").authenticated()
-                .antMatchers(HttpMethod.GET, "/product/v1/{id}").authenticated()
+                .antMatchers(HttpMethod.GET, "/product/v1/{id}").authenticated() 
                 .antMatchers(HttpMethod.DELETE, "/product/v1/{id}").authenticated()
 
                 .antMatchers(HttpMethod.POST, "/image").permitAll()

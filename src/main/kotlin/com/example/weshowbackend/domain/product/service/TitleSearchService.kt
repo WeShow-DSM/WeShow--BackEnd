@@ -5,7 +5,10 @@ import com.example.weshowbackend.domain.product.domain.repository.ProductReposit
 import com.example.weshowbackend.domain.product.domain.type.Category
 import com.example.weshowbackend.domain.product.present.dto.CategorySearchResponse
 import com.example.weshowbackend.domain.product.present.dto.PopularProductResponse
+import com.example.weshowbackend.domain.record.domain.Record
+import com.example.weshowbackend.domain.record.domain.repository.RecordRepository
 import com.example.weshowbackend.domain.review.domain.repository.ReviewRepository
+import com.example.weshowbackend.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.stream.Collectors
@@ -14,7 +17,9 @@ import java.util.stream.Collectors
 class TitleSearchService (
         private val productRepository: ProductRepository,
         private val imageFacade: ImageFacade,
-        private val reviewRepository: ReviewRepository
+        private val reviewRepository: ReviewRepository,
+        private val recordRepository: RecordRepository,
+        private val userFacade: UserFacade
 ) {
 
     @Transactional(readOnly = true)
@@ -31,6 +36,13 @@ class TitleSearchService (
                             reviewCount = reviewRepository.findReviewsByProduct(it).size
                     )
                 }.collect(Collectors.toList())
+
+        recordRepository.save(
+                Record(
+                        content = title,
+                        user =  userFacade.getCurrentUser()
+                )
+        )
 
         return CategorySearchResponse(
                 products = list
