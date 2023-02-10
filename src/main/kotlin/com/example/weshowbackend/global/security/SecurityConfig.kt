@@ -59,10 +59,12 @@ class SecurityConfig (
                 .antMatchers(HttpMethod.GET, "/product/v1").authenticated()
                 .antMatchers(HttpMethod.POST, "/product/v1").authenticated()
                 .antMatchers(HttpMethod.PUT, "/product/v1/{id}").authenticated()
-                .antMatchers(HttpMethod.GET, "/product/v1/{id}").authenticated() 
+                .antMatchers(HttpMethod.GET, "/product/v1/{id}").authenticated()
                 .antMatchers(HttpMethod.DELETE, "/product/v1/{id}").authenticated()
 
                 .antMatchers(HttpMethod.POST, "/image").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/record").authenticated()
 
                 .anyRequest().authenticated()
 
