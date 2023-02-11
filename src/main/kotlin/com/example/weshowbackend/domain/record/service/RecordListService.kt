@@ -21,7 +21,7 @@ class RecordListService (
                 }.collect(Collectors.toList())
 
         return RecordResponse(
-                records = list.slice(0..10)
+                records = list
         )
     }
 }
