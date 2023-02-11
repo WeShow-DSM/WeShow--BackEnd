@@ -11,6 +11,10 @@ class ImageFacade (
 ) {
 
     fun getImage(product: Product): Image {
+        if (imageRepository.findImagesByProduct(product).isEmpty()) {
+            return Image("첨부된 사진이 없습니다", product)
+        }
+
         return imageRepository.findImagesByProduct(product)[0]
     }
 }
