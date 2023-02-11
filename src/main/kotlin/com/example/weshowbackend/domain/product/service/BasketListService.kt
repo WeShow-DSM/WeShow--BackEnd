@@ -24,7 +24,8 @@ class BasketListService (
         val list = basketRepository.findBasketsByUser(userFacade.getCurrentUser()).stream()
                 .map {
                     BasketElementResponse(
-                            id = it.product.id,
+                            basketId = it.id,
+                            productId = it.product.id,
                             productImage = imageFacade.getImage(it.product).url,
                             title = it.product.title,
                             price = it.product.price,
@@ -37,6 +38,10 @@ class BasketListService (
                 .map {
                     total += it.count * it.product.price
                 }
+
+        basketRepository.findBasketsByUser(userFacade.getCurrentUser()).forEach {
+            total += it.count *  it.product.price
+        }
 
         return BasketResponse(
                 products = list,

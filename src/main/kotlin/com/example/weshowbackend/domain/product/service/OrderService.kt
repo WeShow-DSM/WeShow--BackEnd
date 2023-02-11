@@ -18,12 +18,14 @@ class OrderService (
 
     @Transactional
     fun execute(request: OrderRequest) {
-        request.products.stream().map {
-            orderRepository.save(Order(
-                    count = basketRepository.findBasketById(it).count,
-                    user = userFacade.getCurrentUser(),
-                    product = basketRepository.findBasketById(it).product
-            ))
+        request.products.forEach {
+            orderRepository.save(
+                    Order(
+                            count = basketRepository.findBasketById(it).count,
+                            user = userFacade.getCurrentUser(),
+                            product = basketRepository.findBasketById(it).product
+                    )
+            )
 
             basketRepository.delete(basketRepository.findBasketById(it))
         }

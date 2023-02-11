@@ -21,6 +21,7 @@ class OrderListService (
         val orderList = orderRepository.findOrdersByUser(userFacade.getCurrentUser()).stream()
                 .map {
                     OrderElementResponse(
+                            productId = it.product.id,
                             title = it.product.title,
                             price = it.product.price,
                             count = it.count,
