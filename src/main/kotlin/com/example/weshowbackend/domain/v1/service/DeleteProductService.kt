@@ -27,19 +27,7 @@ class DeleteProductService (
         orderRepository.deleteAllByProduct(product)
         imageRepository.deleteAllByProduct(product)
         reviewRepository.deleteAllByProduct(product)
-
-        pointRepository.findPointsByProduct(product).stream()
-                .map {
-                    product.minus(it)
-                }
-
-        val list = product.point.stream()
-                .map {
-                    it.point
-                }
-                .collect(Collectors.toList())
-
-        product.edit(list.average().toFloat())
+        pointRepository.deleteAllByProduct(product)
 
         productRepository.delete(product)
     }

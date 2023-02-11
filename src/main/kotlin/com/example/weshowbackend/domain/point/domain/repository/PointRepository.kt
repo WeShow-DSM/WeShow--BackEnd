@@ -11,4 +11,6 @@ interface PointRepository : CrudRepository<Point, Long> {
     fun findPointByUserAndProduct(user: User, product: Product): Point?
 
     fun findPointsByProduct(product: Product): List<Point>
+
+    fun deleteAllByProduct(product: Product)
 }
