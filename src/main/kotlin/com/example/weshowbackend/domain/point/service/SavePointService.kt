@@ -26,7 +26,7 @@ class SavePointService (
         val product = productFacade.getProduct(id)
 
         pointRepository.findPointByUserAndProduct(user, product).let {
-            if(it == null) { throw PointConflictException.EXCEPTION }
+            if(it != null) { throw PointConflictException.EXCEPTION }
         }
 
         val point = Point(
