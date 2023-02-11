@@ -25,7 +25,7 @@ class CategorySearchService (
                     PopularProductResponse (
                             id = it.id,
                             productImage = imageFacade.getImage(it).url,
-                            comment = it.comment,
+                            title = it.title,
                             price = it.price,
                             point = it.average,
                             reviewCount = reviewRepository.findReviewsByProduct(it).size

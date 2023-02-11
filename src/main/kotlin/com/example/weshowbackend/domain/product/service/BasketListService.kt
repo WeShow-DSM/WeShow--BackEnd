@@ -26,7 +26,7 @@ class BasketListService (
                     BasketElementResponse(
                             id = it.product.id,
                             productImage = imageFacade.getImage(it.product).url,
-                            comment = it.product.comment,
+                            title = it.product.title,
                             price = it.product.price,
                             count = it.count,
                             productPrice = (it.count * it.product.price)

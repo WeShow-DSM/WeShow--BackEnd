@@ -22,7 +22,7 @@ class TitleSearchService (
         private val userFacade: UserFacade
 ) {
 
-    @Transactional(readOnly = true)
+    @Transactional
     fun execute(title: String): CategorySearchResponse {
 
         val list = productRepository.findProductsByTitleContains(title).stream()
@@ -30,7 +30,7 @@ class TitleSearchService (
                     PopularProductResponse (
                             id = it.id,
                             productImage = imageFacade.getImage(it).url,
-                            comment = it.comment,
+                            title = it.title,
                             price = it.price,
                             point = it.average,
                             reviewCount = reviewRepository.findReviewsByProduct(it).size

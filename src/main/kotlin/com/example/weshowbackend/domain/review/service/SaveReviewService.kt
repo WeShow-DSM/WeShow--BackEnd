@@ -22,7 +22,7 @@ class SaveReviewService (
         val product = productFacade.getProduct(id)
 
         reviewRepository.findReviewByUserAndProduct(user, product).let {
-            if(it == null) { throw ReviewConflictException.EXCEPTION }
+            if(it != null) { throw ReviewConflictException.EXCEPTION }
         }
 
         val review = Review(
