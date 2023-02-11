@@ -29,8 +29,8 @@ class UserController (
         return signInService.sign(request)
     }
 
-    @PutMapping
-    fun tokenReissue(@RequestHeader("Refresh-Token") refreshToken: String): TokenResponse {
+    @PutMapping("/refresh")
+    fun tokenReissue(@RequestHeader("refresh-token") refreshToken: String): TokenResponse {
         return refreshService.execute(refreshToken)
     }
 }

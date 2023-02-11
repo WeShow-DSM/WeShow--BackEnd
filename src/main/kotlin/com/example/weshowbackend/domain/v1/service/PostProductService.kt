@@ -32,9 +32,12 @@ class PostProductService (
                 )
         )
 
-        request.images.stream()
-                .map {
-                    imageRepository.save(Image(it, product))
-                }
+        request.images.forEach {
+            imageRepository.save(
+                    Image(
+                            it, product
+                    )
+            )
+        }
     }
 }
