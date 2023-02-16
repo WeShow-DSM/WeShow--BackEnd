@@ -11,7 +11,5 @@ class RedisConfig (
         private val redisProperties: RedisProperties
 ) {
     @Bean
-    fun redisConnectionFactory(): RedisConnectionFactory? {
-        return LettuceConnectionFactory(redisProperties.host, redisProperties.port)
-    }
+    fun redisConnectionFactory(): RedisConnectionFactory = LettuceConnectionFactory(redisProperties.host, redisProperties.port)
 }
