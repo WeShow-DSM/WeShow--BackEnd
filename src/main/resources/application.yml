@@ -17,9 +17,6 @@ spring:
     password: ${DB_PWD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-  profiles:
-    active: local
-
 jwt:
   secret-key: ${JWT_SECRET}
   access-exp: ${JWT_ACCESS_EXP}
