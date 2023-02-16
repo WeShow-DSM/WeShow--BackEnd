@@ -12,20 +12,20 @@ spring:
     show-sql: true
 
   datasource:
-    url: ${DB_URL:jdbc:mysql://localhost:3306/weshow?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true}
-    username: ${DB_USERNAME:root}
-    password: ${DB_PWD:0319}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PWD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   profiles:
     active: local
 
 jwt:
-  secret-key: ${JWT_SECRET:sadsadasd}
-  access-exp: ${JWT_ACCESS_EXP:12000000}
-  refresh-exp: ${JWT_REFRESH_EXP:1800000000}
-  header: ${JWT_HEADER:Authorization}
-  prefix: ${JWT_PREFIX:Bearer}
+  secret-key: ${JWT_SECRET}
+  access-exp: ${JWT_ACCESS_EXP}
+  refresh-exp: ${JWT_REFRESH_EXP}
+  header: ${JWT_HEADER}
+  prefix: ${JWT_PREFIX}
 
 cloud:
   aws:
@@ -33,8 +33,8 @@ cloud:
       access-key: ${S3_ACCESS_KEY}
       secret-key: ${S3_SECRET_KEY}
     s3:
-      bucket: ${S3_BUCKET:weshow12}
+      bucket: ${S3_BUCKET}
     region:
-      static: ${S3_REGION:ap-northeast-2}
+      static: ${S3_REGION}
     stack:
       auto: false
