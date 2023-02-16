@@ -18,8 +18,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   redis:
-    port: ${REDIS_PORT:6379}
-    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT}
+    host: ${REDIS_HOST}
 
 jwt:
   secret-key: ${JWT_SECRET}
