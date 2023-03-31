@@ -17,14 +17,9 @@ spring:
     password: ${DB_PWD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-  redis:
-    port: ${REDIS_PORT}
-    host: ${REDIS_HOST}
-
 jwt:
   secret-key: ${JWT_SECRET}
   access-exp: ${JWT_ACCESS_EXP}
-  refresh-exp: ${JWT_REFRESH_EXP}
   header: ${JWT_HEADER}
   prefix: ${JWT_PREFIX}
 

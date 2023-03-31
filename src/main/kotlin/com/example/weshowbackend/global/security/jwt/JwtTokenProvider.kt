@@ -1,7 +1,5 @@
 package com.example.weshowbackend.global.security.jwt
 
-import com.example.weshowbackend.domain.auth.domain.RefreshToken
-import com.example.weshowbackend.domain.auth.domain.repository.RefreshTokenRepository
 import com.example.weshowbackend.domain.user.present.dto.TokenResponse
 import com.example.weshowbackend.global.error.exception.InvalidJwtException
 import com.example.weshowbackend.global.security.auth.AuthDetailService
@@ -19,27 +17,13 @@ import javax.servlet.http.HttpServletRequest
 @Component
 class JwtTokenProvider(
         private val authDetailService: AuthDetailService,
-        private val jwtProperties: JwtProperties,
-        private val refreshTokenRepository: RefreshTokenRepository
+        private val jwtProperties: JwtProperties
 ) {
 
     fun getToken(id: String):TokenResponse {
         return TokenResponse(
-                accessToken = generateToken(id, jwtProperties.accessExp, "access"),
-                refreshToken = generateRefreshToken(id)
+                accessToken = generateToken(id, jwtProperties.accessExp, "access")
         )
-    }
-
-    fun generateRefreshToken(id: String): String {
-        val newRefreshToken: String = generateToken(id, jwtProperties.refreshExp, "refresh")
-        refreshTokenRepository.save(
-                RefreshToken (
-                        id = id,
-                        token = newRefreshToken,
-                        timeToLive = jwtProperties.refreshExp
-                )
-        )
-        return newRefreshToken
     }
 
     private fun generateToken(id: String, expired: Long, type: String): String {

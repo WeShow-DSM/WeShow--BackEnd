@@ -13,6 +13,7 @@ class JwtTokenFilter(
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
         val bearer: String? = jwtTokenProvider.resolveToken(request)
         bearer?.let {
+            print(bearer)
             val authentication: Authentication = jwtTokenProvider.authentication(bearer)
             SecurityContextHolder.getContext().authentication = authentication
         }

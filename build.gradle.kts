@@ -5,6 +5,7 @@ plugins {
     kotlin("plugin.spring") version "1.7.22"
     kotlin("plugin.jpa") version "1.6.10"
     kotlin("kapt") version "1.6.10"
+    id("jacoco")
 }
 
 dependencies {
@@ -34,9 +35,6 @@ dependencies {
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
-
-    //redis
-    implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
     implementation("com.querydsl:querydsl-jpa:5.0.0")
     kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
